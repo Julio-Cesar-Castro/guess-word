@@ -32,5 +32,10 @@
 
 .container>header span {
   font-size: 1.12rem;
+  color: #9b9b9b;
+}
+
+.container>header span strong {
+  font-size: 1.37rem;
   color: #E8891c;
 }
