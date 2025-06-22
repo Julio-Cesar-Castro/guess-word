@@ -16,6 +16,7 @@ export function App() {
   const [letter, setLetter] = useState("")
   const [lettersUsed, setLettersUsed] = useState<LetterUsedProps[]>([])
   const [challenge, setChallenge] = useState<Challenge | null>(null)
+  const [shake, setShake] = useState(false)
 
   const ATTEMPTS_MARGIN = 5
 
@@ -71,6 +72,12 @@ export function App() {
     setScore(currentScore)
     setLetter("")
 
+
+    if (!correct) {
+      setShake(true)
+      setTimeout(() => setShake(false), 300)
+    }
+
   }
 
   useEffect(() => {
@@ -107,7 +114,7 @@ export function App() {
         <Header current={lettersUsed.length} max={challenge.word.length + ATTEMPTS_MARGIN} onRestart={handleRestartGame} />
         <Tip tip={challenge.tip} />
 
-        <div className={styles.word} >
+        <div className={`${styles.word} ${shake && styles.shake}`} >
 
           {challenge.word.split("").map((letter, index) => {
 
